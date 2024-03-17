@@ -110,18 +110,19 @@ else
     ynh_add_config --template="../sources/www/index_no_sftp.html" --destination="$install_dir/www/index.html"
 fi
 
-#chown -R $app:www-data "$install_dir"
-# Home directory of the user needs to be owned by root to allow
-# SFTP connections
-#chown root:root "$install_dir"
-#setfacl -m g:$app:r-x "$install_dir"
-#setfacl -m g:www-data:r-x "$install_dir"
-#chmod 750 "$install_dir"
-
 # Set files and directories permissions
-chmod 750 "$install_dir"
 chmod -R o-rwx "$install_dir"
 chown -R $app:www-data "$install_dir"
+
+# Home directory of the user needs to be owned by root to allow
+# SFTP connections
+chown root:root "$install_dir"
+setfacl -m g:$app:r-x "$install_dir"
+setfacl -m g:www-data:r-x "$install_dir"
+chmod 750 "$install_dir"
+
+
+
 
 #=================================================
 # PHP-FPM CONFIGURATION
