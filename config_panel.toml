@@ -1,7 +1,7 @@
 version = "1.0"
 
 [main]
-name = "My Webapp configuration"
+name = "Laravel Webapp configuration"
 
     [main.sftp]
     name = "SFTP access"
