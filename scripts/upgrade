@@ -15,6 +15,13 @@ source /usr/share/yunohost/helpers
 
 upgrade_type=$(ynh_check_app_version_changed)
 
+
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
+
+
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
@@ -104,7 +111,7 @@ fi
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-ynh_add_config --template="example-custom-nginx-config.conf" --destination="$nginx_extra_conf_dir/sample.conf"
+ynh_add_config --template="example-custom-nginx-config.conf" --destination="$nginx_extra_conf_dir/laravel.conf"
 
 #=================================================
 # CREATE DEDICATED USER
@@ -148,13 +155,21 @@ fi
 # SECURE FILES AND DIRECTORIES
 #=================================================
 
-chown -R $app:www-data "$install_dir"
+#chown -R $app:www-data "$install_dir"
 # Home directory of the user needs to be owned by root to allow
 # SFTP connections
-chown root:root "$install_dir"
-setfacl -m g:$app:r-x "$install_dir"
-setfacl -m g:www-data:r-x "$install_dir"
+#chown root:root "$install_dir"
+#setfacl -m g:$app:r-x "$install_dir"
+#setfacl -m g:www-data:r-x "$install_dir"
+#chmod 750 "$install_dir"
+
+
+
+
+# Set files and directories permissions
 chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R $app:www-data "$install_dir"
 
 #=================================================
 # DEACTIVE MAINTENANCE MODE
