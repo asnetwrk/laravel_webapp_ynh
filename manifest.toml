@@ -1,8 +1,8 @@
 packaging_format = 2
 
-id = "my_webapp"
-name = "My Webapp"
-description.en = "Custom Web app with SFTP access to serve static (HTML, CSS, JS) and PHP files"
+id = "laravel"
+name = "Laravel Webapp"
+description.en = "Laravel Web app with SFTP access to serve static (HTML, CSS, JS) and PHP files"
 description.fr = "Application Web personnalisée avec accès SFTP pour servir des fichiers statiques (HTML, CSS, JS) et PHP"
 
 version = "1.0~ynh15"
@@ -10,17 +10,20 @@ version = "1.0~ynh15"
 maintainers = []
 
 [upstream]
-license = "GPL-3.0-only"
-code = "https://github.com/YunoHost-Apps/my_webapp_ynh"
+license = "MIT"
+code = "https://github.com/asnetwrk/laravel_webapp_ynh"
+website = "https://laravel.com/"
+admindoc = "https://laravel.com/docs/"
+
 
 [integration]
 yunohost = ">= 11.2.4"
 architectures = "all"
 multi_instance = true
-ldap = "not_relevant"
-sso = "not_relevant"
-disk = "50M"
-ram.build = "50M"
+ldap = true
+sso = false
+disk = "80M"
+ram.build = "400M"
 ram.runtime = "50M"
 
 [install]
@@ -29,7 +32,7 @@ ram.runtime = "50M"
 
     [install.path]
     type = "path"
-    default = "/site"
+    default = "/laravel"
 
     [install.with_sftp]
     ask.en = "Do you need a SFTP access?"
